@@ -1,0 +1,171 @@
+﻿
+body {
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color: #ffffff;
+    background: linear-gradient(180deg, #2a0f1f 0%, #0a0a0a 45%);
+    height: 100vh; 
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(120% 120% at 0% 0%, rgba(58,22,42,0.28) 0%, rgba(58,22,42,0) 60%),
+        radial-gradient(120% 120% at 100% 0%, rgba(28,11,42,0.24) 0%, rgba(28,11,42,0) 60%),
+        radial-gradient(120% 120% at 50% 100%, rgba(27,42,27,0.20) 0%, rgba(27,42,27,0) 60%),
+        linear-gradient(180deg, #2a0f1f 0%, #0a0a0a 60%);
+    background-repeat: no-repeat;
+    background-size: 200% 200%, 200% 200%, 200% 200%, 100% 100%;
+    background-position: 0% 0%, 100% 0%, 50% 100%, 50% 50%;
+    animation: bgflow 5s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+}
+canvas#bg-rain {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+@keyframes bgflow {
+    0% { background-position: 0% 0%, 100% 0%, 50% 100%, 50% 50%; filter: blur(0px); }
+    50% { background-position: 8% 6%, 94% 4%, 52% 92%, 50% 50%; filter: blur(0.2px); }
+    100% { background-position: 12% 10%, 90% 8%, 54% 88%, 50% 50%; filter: blur(0.3px); }
+}
+.app {
+    width: 86vw;
+    max-width: 1100px;
+    margin: clamp(16px, 4vh, 32px) auto;
+    background: linear-gradient(180deg, rgba(18,18,18,0.85), rgba(18,18,18,0.95));
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: clamp(10px, 1.2vw, 16px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.50), 0 0 0 1px rgba(255,255,255,0.02), 0 0 60px rgba(30,215,96,0.06);
+    max-height: 92vh;
+    overflow: auto;
+    position: relative;
+    z-index: 1;
+}
+.hero {
+    display: grid;
+    grid-template-columns: clamp(140px, 18vmin, 232px) 1fr;
+    gap: clamp(12px, 2.2vmin, 24px);
+    align-items: end;
+    padding: clamp(16px, 3vmin, 32px) clamp(16px, 4vmin, 48px) 24px;
+}
+.imgs {
+    width: clamp(120px, 18vmin, 232px);
+    height: clamp(120px, 18vmin, 232px);
+background: #000000;
+border-radius: 12px;
+overflow: hidden;
+box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+.imgs img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+}
+.auth {
+text-transform: uppercase;
+letter-spacing: .08em;
+opacity: .7;
+margin: 0 0 10px;
+font-weight: 600;
+color: #ffffff;
+}
+.titl {
+    font-size: clamp(32px, 7vmin, 88px);
+line-height: 1;
+margin: 0 0 10px;
+font-weight: 800;
+letter-spacing: -0.02em;
+text-shadow: 0 6px 28px rgba(0,0,0,0.45);
+}
+.subtitle {
+color: #b3b3b3;
+margin: 0;
+}
+
+.list {
+    padding: 8px clamp(16px, 4vw, 48px) 48px;
+}
+.list-head, .row {
+    display: grid;
+    grid-template-columns: clamp(24px, 3vmin, 40px) 1fr clamp(120px, 22vmin, 320px) clamp(24px, 4vmin, 60px);
+    gap: clamp(8px, 1.6vmin, 16px);
+    align-items: center;
+    padding: clamp(8px, 1.6vmin, 12px) clamp(10px, 1.6vmin, 16px);
+    border-radius: clamp(6px, .8vmin, 8px);
+}
+.list-head { color: #b3b3b3; font-weight: 600; }
+.row {
+color: #ffffff;
+text-decoration: none;
+background: transparent;
+transition: background .15s ease, transform .05s ease;
+}
+.row:hover {
+    background: rgba(255,255,255,0.06);
+}
+.row:active {
+    transform: scale(0.998);
+}
+.col {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.col-title {
+    font-weight: 600;
+}
+.col-artist {
+    color: #b3b3b3;
+}
+
+.footer {
+    color: #b3b3b3;
+    padding: 24px clamp(16px, 4vw, 48px);
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+@media (max-width: 900px) {
+    .hero {
+        grid-template-columns: 160px 1fr;
+    }
+    .imgs {
+        width: 160px;
+        height: 160px;
+    }
+    .list-head, .row {
+        grid-template-columns: 32px 1fr 160px 40px;
+    }
+}
+@media (max-width: 560px) {
+    .hero {
+        grid-template-columns: 1fr;
+        align-items: start;
+    }
+    .imgs {
+        width: 140px;
+        height: 140px;
+    }
+    .list-head {
+        display: none;
+    }
+    .row {
+        grid-template-columns: 28px 1fr 120px 28px;
+    }
+}
